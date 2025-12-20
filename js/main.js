@@ -6,7 +6,7 @@ const app = {
 
     init: () => {
         app.handleSplash();
-        app.applyTheme();
+        app.applyTheme(); // Defaults to dark now from CSS, checking logic
         app.renderNavbar();
         app.attachEvents();
     },
@@ -22,15 +22,15 @@ const app = {
     },
 
     applyTheme: () => {
-        document.documentElement.setAttribute('data-theme', app.state.theme);
-        const icon = document.getElementById('theme-icon');
-        if (icon) icon.textContent = app.state.theme === 'light' ? '🌙' : '☀️';
+        // Enforce dark mode as per new Premium Design
+        document.documentElement.setAttribute('data-theme', 'dark');
+        // Optional: Toggle icon logic can remain if we strictly want only dark, 
+        // but for now let's just ensure defaults are correct.
     },
 
     toggleTheme: () => {
-        app.state.theme = app.state.theme === 'light' ? 'dark' : 'light';
-        localStorage.setItem('theme', app.state.theme);
-        app.applyTheme();
+        // Locked to Dark Mode for Premium Feel
+        console.log("Theme is locked to Premium Dark Mode");
     },
 
     renderNavbar: () => {
@@ -49,33 +49,34 @@ const app = {
         ];
 
         let authHTML = '';
+        const btnStyle = 'padding: 8px 20px; font-size: 0.85rem;'; // Inline override for nav specific sizes
+
         if (isAuth) {
             authHTML = `
                 <div class="nav-auth-container">
-                     <a href="dashboard.html" class="nav-auth-btn btn-login">Dashboard</a>
-                     <a href="#" id="logout-btn" class="nav-auth-btn" style="color: #ff4444; border:none;">Logout</a>
+                     <a href="dashboard.html" class="btn btn-primary" style="${btnStyle}">Dashboard</a>
+                     <a href="#" id="logout-btn" class="btn btn-secondary" style="${btnStyle}; border-color: #ff4444; color: #ff4444;">Logout</a>
                 </div>
             `;
         } else {
             authHTML = `
                 <div class="nav-auth-container">
-                    <a href="login.html" class="nav-auth-btn btn-login">Login</a>
-                    <a href="register.html" class="nav-auth-btn btn-join">Join Now</a>
+                    <a href="login.html" class="btn btn-secondary" style="${btnStyle}">Login</a>
+                    <a href="register.html" class="btn btn-primary" style="${btnStyle}">Join Now</a>
                 </div>
             `;
         }
 
         const navHTML = `
-            <div class="navbar-inner">
+            <div class="navbar-inner container">
                 <a href="index.html" class="logo">
-                     AREA <span>TALENTS</span>
+                     TN <span>SPORTS</span>
                 </a>
                 
-                <button class="nav-toggle" id="nav-toggle">☰</button>
+                <button class="nav-toggle" id="nav-toggle" style="color: white;">☰</button>
                 
                 <div class="nav-links" id="nav-links">
                     ${links.map(link => `<a href="${link.href}" class="${location.pathname.includes(link.href) ? 'active' : ''}">${link.name}</a>`).join('')}
-                    <a href="model.html">Shop</a>
                 </div>
 
                 ${authHTML}

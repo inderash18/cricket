@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Info | TN Sports Vibe</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/sports.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body data-theme="dark">
+
+    <nav id="main-nav"></nav>
+
+    <div class="container">
+        <div class="section-head text-center" style="margin-top: 40px;">
+            <h2>Sports Encyclopedia</h2>
+            <p class="section-desc">Unlock the mechanics, history, and strategies of the games we love.</p>
+        </div>
+
+        <!-- New Grid Layout replacing Sidebar -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px;">
+            <!-- Sport Card 1 -->
+            <div class="glass-card sport-pill-card" style="display: block; padding: 0;">
+                <div
+                    style="height: 200px; background: url('../assets/pexels-shootsaga-31759373.jpg') center/cover; position: relative;">
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; padding: 20px; background: linear-gradient(to top, black, transparent); width: 100%;">
+                        <h3 style="margin: 0; color: white;">Kabaddi</h3>
+                    </div>
+                </div>
+                <div style="padding: 24px;">
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">The primal game of tag and tackle.
+                        Originating from Tamil Nadu, showing strength and breath control.</p>
+                    <div style="display: flex; gap: 10px;">
+                        <span class="badge"
+                            style="background: rgba(255,215,0,0.1); color: var(--color-brand-primary); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">CONTACT
+                            SPORT</span>
+                        <span class="badge"
+                            style="background: rgba(255,255,255,0.1); color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">TEAM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sport Card 2 -->
+            <div class="glass-card sport-pill-card" style="display: block; padding: 0;">
+                <div
+                    style="height: 200px; background: url('../assets/pexels-pixelcop-2799556.jpg') center/cover; position: relative;">
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; padding: 20px; background: linear-gradient(to top, black, transparent); width: 100%;">
+                        <h3 style="margin: 0; color: white;">Cricket</h3>
+                    </div>
+                </div>
+                <div style="padding: 24px;">
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">More than a game, it's a religion in
+                        Chennai. From Gully cricket to the electric atmosphere of Chepauk.</p>
+                    <div style="display: flex; gap: 10px;">
+                        <span class="badge"
+                            style="background: rgba(255,215,0,0.1); color: var(--color-brand-primary); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">STRATEGY</span>
+                        <span class="badge"
+                            style="background: rgba(255,255,255,0.1); color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">TEAM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sport Card 3 -->
+            <div class="glass-card sport-pill-card" style="display: block; padding: 0;">
+                <div
+                    style="height: 200px; background: url('../assets/pexels-tyler-hendy-9620-54123.jpg') top/cover; position: relative;">
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; padding: 20px; background: linear-gradient(to top, black, transparent); width: 100%;">
+                        <h3 style="margin: 0; color: white;">Silambam</h3>
+                    </div>
+                </div>
+                <div style="padding: 24px;">
+                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Ancient martial art using bamboo
+                        staff. A display of agility, focus, and traditional warfare skills.</p>
+                    <div style="display: flex; gap: 10px;">
+                        <span class="badge"
+                            style="background: rgba(255,215,0,0.1); color: var(--color-brand-primary); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">MARTIAL
+                            ART</span>
+                        <span class="badge"
+                            style="background: rgba(255,255,255,0.1); color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">INDIVIDUAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Growth Zone Reintegrated -->
+        <div class="glass-card"
+            style="margin-top: 60px; padding: 40px; border-left: 5px solid var(--color-brand-primary);">
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h2 class="text-primary" style="margin-bottom: 20px;">🚀 Daily Training Ground</h2>
+                    <p class="text-secondary" style="margin-bottom: 30px;">Consistency is what separates the amateur
+                        from the pro. Track your daily drills here.</p>
+
+                    <div style="display: grid; gap: 15px;">
+                        <label
+                            style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                            <input type="checkbox" id="check1" onclick="saveProgress()"
+                                style="width: 20px; height: 20px; accent-color: var(--color-brand-primary);">
+                            <span style="font-size: 1.1rem;">🏃 15 mins Warm-up (Jog/Stretch)</span>
+                        </label>
+                        <label
+                            style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                            <input type="checkbox" id="check2" onclick="saveProgress()"
+                                style="width: 20px; height: 20px; accent-color: var(--color-brand-primary);">
+                            <span style="font-size: 1.1rem;">🎯 30 mins Core Skill Drill</span>
+                        </label>
+                        <label
+                            style="display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                            <input type="checkbox" id="check3" onclick="saveProgress()"
+                                style="width: 20px; height: 20px; accent-color: var(--color-brand-primary);">
+                            <span style="font-size: 1.1rem;">💧 Hydration Check (1L Water)</span>
+                        </label>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 300px; text-align: center;">
+                    <div
+                        style="width: 200px; height: 200px; border-radius: 50%; border: 10px solid var(--color-brand-secondary); margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                        <span style="font-size: 4rem; font-weight: 800; color: white;" id="streak-count">0</span>
+                        <span style="text-transform: uppercase; color: var(--text-secondary); letter-spacing: 2px;">Day
+                            Streak</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TN Sports Vibe</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function saveProgress() {
+            // Simple checklist persistence for visual demo
+            const checks = [
+                document.getElementById('check1').checked,
+                document.getElementById('check2').checked,
+                document.getElementById('check3').checked,
+                document.getElementById('check4').checked
+            ];
+            localStorage.setItem('daily_progress', JSON.stringify(checks));
+
+            // Check if all done to increase streak
+            if (checks.every(Boolean)) {
+                let streak = parseInt(localStorage.getItem('streak') || '0');
+                // Prevent multiple increments per day in real app, simply increment for demo
+                // localStorage.setItem('streak', streak + 1);
+                // document.getElementById('streak-count').textContent = streak + 1;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checks = JSON.parse(localStorage.getItem('daily_progress'));
+            if (checks) {
+                document.getElementById('check1').checked = checks[0];
+                document.getElementById('check2').checked = checks[1];
+                document.getElementById('check3').checked = checks[2];
+                document.getElementById('check4').checked = checks[3];
+            }
+            document.getElementById('streak-count').textContent = localStorage.getItem('streak') || '0';
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | TN Sports Vibe</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body data-theme="dark">
+
+    <nav id="main-nav"></nav>
+
+    <div class="main-content">
+        <div class="fade-in">
+            <h1 id="welcome-msg">Welcome, Champion!</h1>
+            <p id="user-location" class="text-accent" style="margin-bottom: 30px;">Locating...</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Stats -->
+            <div class="glass-card stat-card">
+                <div class="stat-number" id="event-count">0</div>
+                <p>Events Registered</p>
+            </div>
+            <div class="glass-card stat-card">
+                <div class="stat-number" id="talent-count">0</div>
+                <p>Talents Uploaded</p>
+            </div>
+            <div class="glass-card stat-card">
+                <div class="stat-number">TN</div>
+                <p id="user-district">District</p>
+            </div>
+        </div>
+
+        <h2 class="text-primary" style="margin-top: 50px;">Nearby Events</h2>
+        <div id="nearby-events" class="events-container" style="padding: 0; margin-top: 20px;">
+            <!-- Populated by JS -->
+            <p>Loading nearby detailed events...</p>
+        </div>
+
+        <h2 class="text-primary" style="margin-top: 50px;">Daily Training Tip</h2>
+        <div class="glass-card" style="margin-top: 20px; border-left: 5px solid var(--accent);">
+            <h3 id="daily-tip-title">Focus on Agility</h3>
+            <p id="daily-tip-content">"Speed is what you need. Agility is how you use it. Practice ladder drills for 15
+                mins today."</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TN Sports Vibe</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/events.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dashboard specific logic
+            app.requireAuth();
+
+            const user = app.state.currentUser;
+            if (user) {
+                document.getElementById('welcome-msg').textContent = `Vanakkam, ${user.name}!`;
+                document.getElementById('user-district').textContent = user.district;
+                document.getElementById('event-count').textContent = user.registeredEvents ? user.registeredEvents.length : 0;
+
+                // Count talents
+                const talents = JSON.parse(localStorage.getItem('tn_talents')) || [];
+                const userTalents = talents.filter(t => t.uploader === user.name); // Simple name match for now
+                document.getElementById('talent-count').textContent = userTalents.length;
+            }
+
+            // Simulation of nearby events logic utilizing eventsApp
+            // We wait a bit for eventsApp to initialize or just call a render helper if we made one.
+            // We'll filter eventsApp.data by user district manually here for dashboard view
+            setTimeout(() => {
+                const nearby = eventsApp.data.filter(e => e.district === user.district);
+                const container = document.getElementById('nearby-events');
+                if (nearby.length > 0) {
+                    container.innerHTML = nearby.map(event => `
+                        <div class="glass-card event-card">
+                            <span class="event-status">${event.status}</span>
+                            <h3 class="text-primary">${event.title}</h3>
+                            <p><strong>Venue:</strong> ${event.venue}</p>
+                            <p><strong>Date:</strong> ${event.date}</p>
+                            <button class="btn btn-primary" onclick="eventsApp.registerEvent(${event.id})">Register</button>
+                        </div>
+                    `).join('');
+                    // Fix grid layout for this section
+                    container.style.gridTemplateColumns = "repeat(auto-fill, minmax(280px, 1fr))";
+                    container.style.display = "grid";
+                    container.style.gap = "20px";
+                } else {
+                    container.innerHTML = "<p>No upcoming events found in your district specifically. Check the Events page for more!</p>";
+                }
+            }, 500);
+
+            // Random Tip
+            const tips = [
+                { title: "Hydration is Key", content: "Drink at least 3 liters of water. Coconut water is nature's sports drink." },
+                { title: "Kabaddi Stance", content: "Keep your center of gravity low. It makes you harder to tackle." },
+                { title: "Silambam Wrist Work", content: "Practice figure-8 rotations for flexibility." },
+                { title: "Rest & Recover", content: "Muscles grow when you rest, not when you train. Get 8 hours of sleep." }
+            ];
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            document.getElementById('daily-tip-title').textContent = randomTip.title;
+            document.getElementById('daily-tip-content').textContent = randomTip.content;
+        });
+    </script>
+</body>
+
+</html>

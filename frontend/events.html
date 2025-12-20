@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | TN Sports Vibe</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body data-theme="dark">
+
+    <nav id="main-nav"></nav>
+
+    <div class="main-content">
+        <div class="container" style="padding-top: 40px;">
+            <div class="section-head text-center">
+                <h2>Match Center</h2>
+                <p class="section-desc">Live scores, upcoming fixtures, and tournament schedules across Tamil Nadu.</p>
+            </div>
+
+            <!-- New Filter Bar -->
+            <div class="glass-card"
+                style="margin-bottom: 40px; padding: 20px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: center;">
+                <span class="text-secondary" style="font-weight: 500;">FILTER BY:</span>
+                <select id="filter-sport" class="form-control" style="width: auto; height: 45px;">
+                    <option value="">All Sports</option>
+                    <option value="Kabaddi">Kabaddi</option>
+                    <option value="Cricket">Cricket</option>
+                    <option value="Football">Football</option>
+                </select>
+                <select id="filter-district" class="form-control" style="width: auto; height: 45px;">
+                    <option value="">All Locations</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Madurai">Madurai</option>
+                </select>
+            </div>
+
+            <div id="events-container" class="dashboard-grid">
+                <!-- Static Demo Cards -->
+                <div class="event-card">
+                    <div class="card-media">
+                        <span class="sport-tag">Cricket</span>
+                        <div class="date-badge">
+                            <span style="display: block; font-size: 1.2rem; font-weight: 800;">24</span>
+                            <span style="font-size: 0.8rem; text-transform: uppercase;">DEC</span>
+                        </div>
+                        <img src="../assets/pexels-shootsaga-31759373.jpg"
+                            style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+                    </div>
+                    <div class="content">
+                        <span class="text-secondary" style="font-size: 0.9rem;">Chennai • 6:00 PM</span>
+                        <h3>Super Kings vs Madurai Panthers</h3>
+                        <p class="text-secondary" style="font-size: 0.9rem; margin-top: auto;">Chepauk Stadium Finals
+                        </p>
+                        <button class="btn btn-primary" style="margin-top: 20px; width: 100%;">View Match Info</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="card-media">
+                        <span class="sport-tag">Kabaddi</span>
+                        <div class="date-badge">
+                            <span style="display: block; font-size: 1.2rem; font-weight: 800;">28</span>
+                            <span style="font-size: 0.8rem; text-transform: uppercase;">DEC</span>
+                        </div>
+                        <div
+                            style="width: 100%; height: 100%; background: #333; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            🤼</div>
+                    </div>
+                    <div class="content">
+                        <span class="text-secondary" style="font-size: 0.9rem;">Salem • 4:00 PM</span>
+                        <h3>Pro District Championship</h3>
+                        <p class="text-secondary" style="font-size: 0.9rem; margin-top: auto;">Quarter Finals - Group A
+                        </p>
+                        <button class="btn btn-secondary" style="margin-top: 20px; width: 100%;">Register Team</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TN Sports Vibe</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/events.js"></script>
+</body>
+
+</html>

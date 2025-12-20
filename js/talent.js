@@ -1,7 +1,7 @@
 const talentApp = {
     sampleData: [
-        { id: 101, title: "Silambam Spin", uploader: "Ravi Kumar", district: "Madurai", sport: "Silambam", desc: "My fastest rotation record!", media: "assets/pexels-tyler-hendy-9620-54123.jpg" },
-        { id: 102, title: "Kabaddi Raid", uploader: "Anitha S", district: "Chennai", sport: "Kabaddi", desc: "Winning raid point in finals.", media: "assets/pexels-shootsaga-31759373.jpg" },
+        { id: 101, title: "Silambam Spin", uploader: "Ravi Kumar", district: "Madurai", sport: "Silambam", desc: "My fastest rotation record!", media: "../assets/pexels-tyler-hendy-9620-54123.jpg" },
+        { id: 102, title: "Kabaddi Raid", uploader: "Anitha S", district: "Chennai", sport: "Kabaddi", desc: "Winning raid point in finals.", media: "../assets/pexels-shootsaga-31759373.jpg" },
     ],
 
     init: () => {

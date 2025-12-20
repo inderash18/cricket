@@ -76,7 +76,7 @@
 }
 
 .splash-logo span {
-    color: #FFC20E;
+    color: var(--color-brand-primary);
     /* Nivia Yellow */
 }
 
@@ -191,8 +191,8 @@
 .loading-bar {
     width: 0%;
     height: 100%;
-    background: #FFC20E;
-    box-shadow: 0 0 10px #FFC20E;
+    background: var(--color-brand-primary);
+    box-shadow: 0 0 10px var(--color-brand-primary);
     animation: loading 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 

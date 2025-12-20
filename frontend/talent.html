@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Showcase | TN Sports Vibe</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body data-theme="dark">
+
+    <nav id="main-nav"></nav>
+
+    <div class="main-content">
+        <div class="container" style="padding-top: 40px;">
+            <div class="section-head text-center">
+                <h2>Talent Spotlight</h2>
+                <p class="section-desc">The stage is yours. Witness the raw potential of Tamil Nadu's next generation
+                    athletes.</p>
+            </div>
+
+            <!-- Upload / Stats Bar -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 50px;">
+                <div class="glass-card"
+                    style="flex: 1; min-width: 300px; display: flex; align-items: center; justify-content: space-between; padding: 30px;">
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.5rem;">Upload Your Reels</h3>
+                        <p class="text-secondary">Get scouted by top academies.</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="alert('Open Upload Modal')">Create +</button>
+                </div>
+                <div class="glass-card"
+                    style="flex: 1; min-width: 300px; padding: 30px; display: flex; align-items: center; gap: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2rem; font-weight: 800; color: white;">320+</span>
+                        <span class="text-secondary" style="font-size: 0.9rem;">New Videos Today</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2rem; font-weight: 800; color: white;">15</span>
+                        <span class="text-secondary" style="font-size: 0.9rem;">Scouts Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Grid (Instagram Style) -->
+            <div class="dashboard-grid"
+                style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+
+                <!-- Video Item 1 -->
+                <div class="talent-frame">
+                    <img src="../assets/pexels-shootsaga-31759373.jpg" alt="Talent Reel">
+                    <div class="talent-overlay">
+                        <span
+                            style="background: red; color: white; padding: 2px 8px; font-size: 0.7rem; border-radius: 4px; display: inline-block; width: fit-content; margin-bottom: 5px;">LIVE</span>
+                        <h4 style="margin: 0; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Kabaddi Raid
+                            Trick</h4>
+                        <p style="font-size: 0.85rem; color: #ddd; margin: 0;">@ravoraider • Madurai</p>
+                    </div>
+                </div>
+
+                <!-- Video Item 2 -->
+                <div class="talent-frame">
+                    <img src="../assets/pexels-tyler-hendy-9620-54123.jpg" alt="Talent Reel">
+                    <div class="talent-overlay">
+                        <h4 style="margin: 0; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Goal of the
+                            Month</h4>
+                        <p style="font-size: 0.85rem; color: #ddd; margin: 0;">@footy_karthik • Chennai</p>
+                    </div>
+                </div>
+
+                <!-- Video Item 3 (Placeholder for JS Population) -->
+                <div class="talent-frame">
+                    <div
+                        style="width: 100%; height: 100%; background: #333; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 3rem;">▶️</span>
+                    </div>
+                    <div class="talent-overlay">
+                        <h4 style="margin: 0; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Silambam Flow
+                        </h4>
+                        <p style="font-size: 0.85rem; color: #ddd; margin: 0;">@master_siva • Trichy</p>
+                    </div>
+                </div>
+
+                <!-- Video Item 4 -->
+                <div class="talent-frame">
+                    <img src="../assets/pexels-pixelcop-2799556.jpg" alt="Talent Reel">
+                    <div class="talent-overlay">
+                        <h4 style="margin: 0; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Fast Bowling
+                            Tips</h4>
+                        <p style="font-size: 0.85rem; color: #ddd; margin: 0;">@pace_academy • Salem</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="talent-grid" style="display: none;"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 TN Sports Vibe</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/talent.js"></script>
+</body>
+
+</html>
