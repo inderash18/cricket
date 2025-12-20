@@ -1,0 +1,165 @@
+/* Sports Module Layout */
+
+/* Flex container for the whole layout */
+.sports-layout {
+    display: flex;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+    align-items: flex-start;
+}
+
+/* Sidebar Navigation */
+.sport-sidebar {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 110px;
+    /* Below the main navbar */
+}
+
+.sport-sidebar h3 {
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--nivia-blue);
+    border-bottom: 2px solid var(--nivia-yellow);
+    padding-bottom: 10px;
+}
+
+.sport-nav li {
+    margin-bottom: 10px;
+}
+
+.sport-nav a {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--text-main);
+    transition: all 0.3s;
+}
+
+.sport-nav a:hover,
+.sport-nav a.active {
+    background: var(--nivia-blue);
+    color: white;
+    padding-left: 20px;
+}
+
+/* Main Details Container */
+.sport-details-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+/* Detailed Sport Card */
+.sport-detail-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    scroll-margin-top: 120px;
+    /* For smooth scrolling anchor offset */
+}
+
+/* Banner Image/Header */
+.sport-banner {
+    height: 300px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-color: #333;
+    /* Fallback */
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+}
+
+.sport-banner .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.sport-banner h2 {
+    position: relative;
+    /* Above overlay */
+    z-index: 2;
+    color: white;
+    /* Always white on image */
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    border-left: 5px solid var(--nivia-yellow);
+    padding-left: 15px;
+}
+
+/* Info Sections */
+.sport-info {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.info-block h4 {
+    font-size: 1.2rem;
+    color: var(--nivia-blue);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+}
+
+.info-block .icon {
+    font-size: 1.5rem;
+    color: var(--nivia-yellow);
+}
+
+.info-block p,
+.info-block li {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.info-block ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.info-block li {
+    margin-bottom: 8px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .sports-layout {
+        flex-direction: column;
+    }
+
+    .sport-sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .sport-nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 5px;
+    }
+
+    .sport-nav a {
+        white-space: nowrap;
+    }
+}

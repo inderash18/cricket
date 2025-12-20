@@ -1,0 +1,227 @@
+/* Splash Screen - Split Curtain & Glitch Effect */
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    /* Let clicks pass through after animation */
+}
+
+/* The Background Curtains */
+.splash-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background-color: #0a0a0a;
+    /* Deep black/dark */
+    z-index: 1;
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.splash-overlay.left {
+    left: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.splash-overlay.right {
+    right: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Content Container */
+.splash-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+/* Hidden State (Triggered by JS) */
+#splash-screen.hidden .splash-overlay.left {
+    transform: translateX(-100%);
+}
+
+#splash-screen.hidden .splash-overlay.right {
+    transform: translateX(100%);
+}
+
+#splash-screen.hidden .splash-content {
+    opacity: 0;
+}
+
+#splash-screen.hidden {
+    /* Finally hide the container to avoid blocking interactions */
+    visibility: hidden;
+    transition-delay: 1s;
+    /* Wait for curtains to finish */
+}
+
+
+/* Typography & Animation */
+.splash-logo {
+    font-family: 'Oswald', sans-serif;
+    /* Ensure font is loaded */
+    font-size: 6rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+.splash-logo span {
+    color: #FFC20E;
+    /* Nivia Yellow */
+}
+
+/* Glitch Effect Setup */
+.splash-logo::before,
+.splash-logo::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+}
+
+.splash-logo::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip-path: inset(44% 0 61% 0);
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.splash-logo::after {
+    left: -2px;
+    text-shadow: -1px 0 #00fff9;
+    clip-path: inset(50% 0 30% 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% {
+        clip-path: inset(20% 0 80% 0);
+    }
+
+    20% {
+        clip-path: inset(60% 0 10% 0);
+    }
+
+    40% {
+        clip-path: inset(40% 0 50% 0);
+    }
+
+    60% {
+        clip-path: inset(80% 0 5% 0);
+    }
+
+    80% {
+        clip-path: inset(10% 0 70% 0);
+    }
+
+    100% {
+        clip-path: inset(30% 0 20% 0);
+    }
+}
+
+@keyframes glitch-anim-2 {
+    0% {
+        clip-path: inset(10% 0 60% 0);
+    }
+
+    20% {
+        clip-path: inset(30% 0 20% 0);
+    }
+
+    40% {
+        clip-path: inset(70% 0 10% 0);
+    }
+
+    60% {
+        clip-path: inset(20% 0 50% 0);
+    }
+
+    80% {
+        clip-path: inset(50% 0 30% 0);
+    }
+
+    100% {
+        clip-path: inset(5% 0 80% 0);
+    }
+}
+
+.fade-up {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading Bar */
+.loading-container {
+    margin-top: 40px;
+    width: 300px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background: #FFC20E;
+    box-shadow: 0 0 10px #FFC20E;
+    animation: loading 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+
+    40% {
+        width: 50%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .splash-logo {
+        font-size: 3.5rem;
+    }
+
+    .fade-up {
+        font-size: 0.9rem;
+        letter-spacing: 4px;
+    }
+
+    .loading-container {
+        width: 200px;
+    }
+}
