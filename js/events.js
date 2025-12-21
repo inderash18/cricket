@@ -1,3 +1,21 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const sportSelect = document.getElementById('filter-sport');
+  const districtSelect = document.getElementById('filter-district');
+  const container = document.getElementById('events-container');
+
+  function applyFilters() {
+    const sport = sportSelect?.value?.toLowerCase() || '';
+    const district = districtSelect?.value?.toLowerCase() || '';
+    Array.from(container.querySelectorAll('.event-card')).forEach(card => {
+      const text = card.textContent.toLowerCase();
+      const matches = (sport === '' || text.includes(sport)) && (district === '' || text.includes(district));
+      card.style.display = matches ? '' : 'none';
+    });
+  }
+
+  sportSelect && sportSelect.addEventListener('change', applyFilters);
+  districtSelect && districtSelect.addEventListener('change', applyFilters);
+});
 const eventsApp = {
     data: [
         { id: 1, title: "Pro Kabaddi League Trials", sport: "Kabaddi", district: "Chennai", date: "2025-12-20", venue: "Jawaharlal Nehru Stadium", status: "Upcoming" },

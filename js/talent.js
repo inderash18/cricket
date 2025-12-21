@@ -1,3 +1,97 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('talent-search');
+  const grid = document.getElementById('talent-grid') || document.querySelector('.talent-grid');
+  const cards = grid ? Array.from(grid.querySelectorAll('.talent-card')) : [];
+  const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+
+  function applyFilter(query = '', sport = 'all') {
+    const q = query.trim().toLowerCase();
+    let visible = 0;
+    const list = grid || document.querySelector('.talent-grid');
+    if (!list) return;
+    const items = Array.from(list.querySelectorAll('.talent-card'));
+    items.forEach(card => {
+      const name = (card.dataset.name || '').toLowerCase();
+      const city = (card.dataset.city || '').toLowerCase();
+      const cardSport = (card.dataset.sport || '').toLowerCase();
+      const matchesText = q === '' || name.includes(q) || city.includes(q) || cardSport.includes(q);
+      const matchesSport = sport === 'all' || cardSport === sport;
+      const shouldShow = matchesText && matchesSport;
+      card.style.display = shouldShow ? '' : 'none';
+      if (shouldShow) visible++;
+    });
+    list.setAttribute('data-visible', visible);
+  }
+
+  let debounceTimer;
+  if (searchInput) searchInput.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      const activeFilter = document.querySelector('.filter-btn.active')?.dataset.sport || 'all';
+      applyFilter(e.target.value, activeFilter);
+    }, 160);
+  });
+
+  filterButtons.forEach(btn => btn.addEventListener('click', () => {
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter(searchInput?.value || '', btn.dataset.sport);
+  }));
+
+  // Reveal animations
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.talent-card').forEach(c => io.observe(c));
+
+  // Modal handling (if modal exists)
+  const modal = document.getElementById('talent-modal');
+  if (modal) {
+    const modalBackdrop = modal.querySelector('[data-close]');
+    const modalImg = modal.querySelector('.modal-media img');
+    const modalName = modal.querySelector('.modal-name');
+    const modalRole = modal.querySelector('.modal-role');
+    const modalStats = modal.querySelector('.modal-stats');
+    const modalBio = modal.querySelector('.modal-bio');
+
+    function openModalFromCard(card) {
+      const img = card.querySelector('img')?.src || '';
+      const name = card.dataset.name || '';
+      const sport = card.dataset.sport || '';
+      const city = card.dataset.city || '';
+      const stats = Array.from(card.querySelectorAll('.stats span')).map(s => s.textContent).join(' • ');
+      modalImg.src = img; modalImg.alt = name;
+      modalName.textContent = name;
+      modalRole.textContent = `${sport} • ${city}`;
+      modalStats.innerHTML = `<span>${stats}</span>`;
+      modalBio.textContent = `Profile highlights for ${name}.`;
+      modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    }
+
+    document.body.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-details');
+      if (btn) {
+        const card = btn.closest('.talent-card');
+        if (card) openModalFromCard(card);
+      }
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target.closest('[data-close]') || e.target === modal) {
+        modal.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+      }
+    });
+    document.addEventListener('keydown', (e) => { if (e.key==='Escape') modal.setAttribute('aria-hidden','true'); });
+  }
+
+  // Initial filter
+  applyFilter('', 'all');
+});
 const talentApp = {
     sampleData: [
         { id: 101, title: "Silambam Spin", uploader: "Ravi Kumar", district: "Madurai", sport: "Silambam", desc: "My fastest rotation record!", media: "../assets/pexels-tyler-hendy-9620-54123.jpg" },

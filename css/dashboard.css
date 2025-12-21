@@ -1,0 +1,8 @@
+/* Dashboard page styles - Dark premium */
+:root{--bg:#0a0a0a;--primary:#ff3e3e;--muted:#9aa0a6}
+body[data-theme='dark'] .main-content{background:transparent}
+.fade-in{opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.fade-in.visible{opacity:1;transform:none}
+.stat-card{padding:20px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));}
+.stat-number{font-size:2rem;font-weight:800;color:var(--primary)}
+@media(max-width:800px){.dashboard-grid{grid-template-columns:1fr}}

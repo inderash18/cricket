@@ -1,0 +1,6 @@
+:root{--bg:#0a0a0a;--primary:#ff3e3e}
+body{background:var(--bg)}
+.hero{padding:24px 0}
+.hero-title{color:#fff}
+.hero-actions .btn{border-radius:10px}
+@media(max-width:700px){.hero-content{padding:20px}}

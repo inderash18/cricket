@@ -1,0 +1,6 @@
+/* Register page styles */
+:root{--bg:#0a0a0a;--primary:#ff3e3e}
+.auth-container{display:flex;align-items:center;justify-content:center;padding:40px}
+.auth-card{max-width:600px}
+.form-control,select{width:100%;padding:10px;border-radius:8px;background:#0f0f0f;color:#fff;border:1px solid rgba(255,255,255,0.04)}
+.btn-primary{background:var(--primary);color:#111}

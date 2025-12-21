@@ -1,0 +1,6 @@
+/* Login page - simple dark form */
+:root{--bg:#0a0a0a;--primary:#ff3e3e}
+.auth-container{display:flex;align-items:center;justify-content:center;min-height:70vh;padding:40px}
+.auth-card{max-width:420px}
+.form-control{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:#0f0f0f;color:#fff}
+.btn-primary{background:var(--primary);color:#111}
