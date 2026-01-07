@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Users, MapPin, Trophy, ArrowLeft, BarChart3, PieChart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Users, MapPin, Trophy, ArrowLeft, BarChart3, PieChart } from 'lucide-react';
+import axios from 'axios';
 
 const Analytics = () => {
     const navigate = useNavigate();
@@ -9,34 +10,42 @@ const Analytics = () => {
         byDistrict: {},
         bySport: {}
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const users = JSON.parse(localStorage.getItem('tn_users')) || [];
+        const fetchStats = async () => {
+            try {
+                const [overviewRes, districtRes, sportRes] = await Promise.all([
+                    axios.get('http://localhost:5000/api/analytics/overview'),
+                    axios.get('http://localhost:5000/api/analytics/users-by-district'),
+                    axios.get('http://localhost:5000/api/analytics/users-by-sport')
+                ]);
 
-        const districtCounts = {};
-        const sportCounts = {};
+                // Transform district array to object
+                const districtObj = {};
+                districtRes.data.forEach(item => {
+                    districtObj[item._id] = item.count;
+                });
 
-        users.forEach(user => {
-            districtCounts[user.district] = (districtCounts[user.district] || 0) + 1;
-            sportCounts[user.sport] = (sportCounts[user.sport] || 0) + 1;
-        });
+                // Transform sport array to object
+                const sportObj = {};
+                sportRes.data.forEach(item => {
+                    sportObj[item._id] = item.count;
+                });
 
-        // Add some mock data if empty to show the UI
-        if (users.length === 0) {
-            const mockDistricts = { "Chennai": 450, "Coimbatore": 320, "Madurai": 210, "Salem": 180, "Trichy": 150 };
-            const mockSports = { "Cricket": 500, "Kabaddi": 350, "Silambam": 200, "Football": 180, "Badminton": 120 };
-            setStats({
-                total: 1310,
-                byDistrict: mockDistricts,
-                bySport: mockSports
-            });
-        } else {
-            setStats({
-                total: users.length,
-                byDistrict: districtCounts,
-                bySport: sportCounts
-            });
-        }
+                setStats({
+                    total: overviewRes.data.totalUsers,
+                    byDistrict: districtObj,
+                    bySport: sportObj
+                });
+            } catch (error) {
+                console.error('Error fetching analytics:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchStats();
     }, []);
 
     const getMax = (obj) => Math.max(...Object.values(obj), 1);

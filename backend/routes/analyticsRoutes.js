@@ -8,10 +8,10 @@ const {
 } = require('../controllers/analyticsController');
 const { protect, admin } = require('../middleware/authMiddleware');
 
-// Dashboard routes usually protected for admin
-router.get('/overview', protect, admin, getOverview);
-router.get('/users-by-district', protect, admin, getUsersByDistrict);
-router.get('/users-by-sport', protect, admin, getUsersBySport);
-router.get('/monthly-registrations', protect, admin, getMonthlyRegistrations);
+// Dashboard routes
+router.get('/overview', getOverview);
+router.get('/users-by-district', getUsersByDistrict);
+router.get('/users-by-sport', getUsersBySport);
+router.get('/monthly-registrations', getMonthlyRegistrations);
 
 module.exports = router;

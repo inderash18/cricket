@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const users = JSON.parse(localStorage.getItem('tn_users')) || [];
-        const user = users.find(u => u.email === email && u.password === password);
 
-        if (user) {
-            const sessionUser = { ...user };
-            delete sessionUser.password;
-            localStorage.setItem('user', JSON.stringify(sessionUser));
-            alert(`Welcome back, ${user.name}!`);
-            navigate('/dashboard');
-            window.location.reload(); // Refresh to update navbar state
-        } else {
-            alert("Invalid email or password.");
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/login', {
+                email,
+                password
+            });
+
+            if (response.data) {
+                const user = response.data;
+                localStorage.setItem('user', JSON.stringify(user));
+                alert(`Welcome back, ${user.name}!`);
+                navigate('/dashboard');
+                window.location.reload(); // Refresh to update navbar state
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            alert(error.response?.data?.message || "Invalid email or password.");
         }
     };
 

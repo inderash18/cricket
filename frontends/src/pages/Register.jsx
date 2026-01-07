@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { User, Mail, MapPin, Trophy, Lock, ArrowRight, CheckCircle } from 'lucide-react';
 
 const Register = () => {
@@ -16,7 +17,7 @@ const Register = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         const { name, email, district, sport, password } = formData;
 
@@ -25,28 +26,23 @@ const Register = () => {
             return;
         }
 
-        const users = JSON.parse(localStorage.getItem('tn_users')) || [];
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/register', {
+                name,
+                email,
+                district,
+                favouriteSport: sport, // Map frontend 'sport' to backend 'favouriteSport'
+                password
+            });
 
-        if (users.find(u => u.email === email)) {
-            alert("Email already registered!");
-            return;
+            if (response.data) {
+                alert("Registration Successful! Please login.");
+                navigate('/login');
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert(error.response?.data?.message || "Registration failed. Please try again.");
         }
-
-        const newUser = {
-            id: Date.now().toString(),
-            name,
-            email,
-            district,
-            sport,
-            password,
-            registeredEvents: []
-        };
-
-        users.push(newUser);
-        localStorage.setItem('tn_users', JSON.stringify(users));
-
-        alert("Registration Successful! Please login.");
-        navigate('/login');
     };
 
     return (
